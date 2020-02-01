@@ -1,0 +1,19 @@
+language: rust
+env:
+  global:
+    - RUST_BACKTRACE=1
+
+rust:
+  - stable
+  - nightly
+
+os:
+  - linux
+  - osx
+  - windows
+
+osx_image: xcode11.2
+
+script:
+  - cargo build --all --release
+  - cargo test --all --release

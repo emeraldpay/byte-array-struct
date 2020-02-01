@@ -1,0 +1,23 @@
+[package]
+name = "byte-array-struct"
+description = "Macro to create a byte-array backed struct"
+version = "0.1.0"
+authors = ["Igor Artamonov <igor@artamonov.ru>", "Dmitry Ulanov <dulanov@gmail.com>"]
+edition = "2018"
+readme = "cargo.md"
+license = "Apache-2.0"
+repository = "https://github.com/emeraldpay/byte-array-struct"
+documentation = "https://docs.rs/byte-array-struct"
+
+[lib]
+name = "byte_array_struct"
+path = "src/lib.rs"
+
+[dependencies]
+serde = {version = "1.0", optional = true }
+serde_json = {version = "1.0", optional = true }
+hex = "0.4"
+
+[features]
+default=["serialize"]
+serialize=["serde", "serde_json"]
