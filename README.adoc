@@ -5,8 +5,8 @@ image:https://img.shields.io/crates/v/byte-array-struct.svg?style=flat-square["C
 image:https://img.shields.io/badge/License-Apache%202.0-blue.svg["License"]
 
 
-Provides a macro to allows creation of a simple byte-array backed structs. Such struct has a predefined size and
-allocated on stack.
+Provides a macro to allows creation of a simple byte-array backed structs.
+Such struct has a predefined size and allocated on the stack.
 
 == Usage
 
@@ -43,7 +43,7 @@ fn main() {
 }
 ----
 
-=== Features
+=== Provides
 
 Macro provides implementation for following traits:
 
@@ -53,7 +53,11 @@ Macro provides implementation for following traits:
 - `.from([u8; ...])` and `.from(&[u8; ...])`, where `...` is the defined size
 - `.try_from(Vec<u8>)` and `.try_from(&[u8])`
 - `.into(Vec<u8>)` and `.into([u8; ...])`
-- `.serialize` and `.deserialize` for Serde, with `serialize` feature enabled (default)
+- `.serialize` and `.deserialize` for Serde, with `with-serde` feature enabled (not enabled by default)
+
+=== Features
+
+- `with-serde` to implement serialization/deserialization with Serde. Uses Hex encoded strings.
 
 == License
 

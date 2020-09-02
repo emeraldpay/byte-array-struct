@@ -112,7 +112,25 @@ macro_rules! byte_array_struct {
             }
         }
 
-        #[cfg(feature = "serialize")]
+        // add implementation for Serde serialize/deserialize if with-serde feature is configured
+        __bas_with_serde!($name, $num);
+    };
+}
+
+// if with-serde is not enabled, generates nothing
+#[cfg(not(feature = "with-serde"))]
+#[macro_export]
+macro_rules! __bas_with_serde {
+    ($name:ident, $num:expr) => {
+
+    }
+}
+
+// if with-serde is enabled
+#[cfg(feature = "with-serde")]
+#[macro_export]
+macro_rules! __bas_with_serde {
+    ($name:ident, $num:expr) => {
         impl<'de> ::serde::Deserialize<'de> for $name {
             fn deserialize<D>(deserializer: D) -> Result<$name, D::Error>
             where
@@ -136,7 +154,6 @@ macro_rules! byte_array_struct {
             }
         }
 
-        #[cfg(feature = "serialize")]
         impl ::serde::Serialize for $name {
             fn serialize<S>(&self, serializer: S) -> Result<S::Ok, S::Error>
             where
@@ -146,7 +163,7 @@ macro_rules! byte_array_struct {
                 serializer.serialize_str(&hex::encode(&self.0))
             }
         }
-    };
+    }
 }
 
 #[cfg(test)]
@@ -282,7 +299,7 @@ mod tests {
     }
 }
 
-#[cfg(all(test, feature = "serialize"))]
+#[cfg(all(test, feature = "with-serde"))]
 mod tests_serde {
 
     byte_array_struct!(
