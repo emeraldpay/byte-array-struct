@@ -7,7 +7,7 @@ allocated on stack.
 
 ```
 [dependencies]
-byte-array-struct = "0.1"
+byte-array-struct = "0.2"
 ```
 
 ### Example
@@ -36,7 +36,7 @@ fn main() {
 }
 ```
 
-### Features
+### Provides
 
 Macro provides implementation for following traits:
 
@@ -46,4 +46,8 @@ Macro provides implementation for following traits:
 - `.from([u8; ...])` and `.from(&[u8; ...])`, where `...` is the defined size
 - `.try_from(Vec<u8>)` and `.try_from(&[u8])`
 - `.into(Vec<u8>)` and `.into([u8; ...])`
-- `.serialize` and `.deserialize` for Serde, with `serialize` feature enabled (default)
+- `.serialize` and `.deserialize` for Serde, with `with-serde` feature enabled (not enabled by default)
+
+### Features
+
+- `with-serde` to implement serialization/deserialization with Serde. Uses Hex encoded strings.

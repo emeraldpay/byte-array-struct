@@ -14,7 +14,7 @@ Such struct has a predefined size and allocated on the stack.
 
 ----
 [dependencies]
-byte-array-struct = "0.1"
+byte-array-struct = "0.2"
 ----
 
 === Example
